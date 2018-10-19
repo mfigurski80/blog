@@ -14,7 +14,7 @@ var curSessions = {};
 ****** */
 // checks authorization
 function isReqAuthorized(req) {
-  if (curSessions[req.cookies.SessionID] != undefined && curSessions[req.cookies.SessionID].user.isLoggedIn) {
+  if (curSessions[req.cookies.SessionID] && curSessions[req.cookies.SessionID].user.isLoggedIn) {
     return true;
   }
   return false;
@@ -126,7 +126,7 @@ router.get("/articles/:article", function(req, res, next) {
 router.post("/articles/:article", function(req, res) {
   if (isReqAuthorized(req)) {
     req.body.title = req.body.title.replace(new RegExp("\\?", "g"),"");
-    if (req.files != undefined && req.files.imageFile != undefined) { // if there's an image sent (YAY!!)
+    if (req.files && req.files.imageFile) { // if there's an image sent (YAY!!)
       req.files.imageFile.mv("public/images/" + req.files.imageFile.name, function(err) {});
       req.body.imageFile = req.files.imageFile.name;
     }

@@ -1,0 +1,20 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "Personal-Use blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mikolaj Figurski",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "express-fileupload": "^1.0.0",
+    "multer": "^1.4.1",
+    "pug": "^2.0.3",
+    "sqlite3": "^4.0.2"
+  }
+}
