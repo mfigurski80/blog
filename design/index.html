@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="../public/images/watermarkyellow.png"/>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="../public/css/style.css">
+  <!-- FontAwesome (couldn't find @import?) -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+  <title>Blog | Figurski</title>
+</head>
+<body>
+  <header class="section-header">
+    <nav class="container">
+      <div class="wrapper">
+        <a href="/" class="button-nav"><h5>HOME</h5></a>
+        <a href="/" class="button-nav"><h5>Portfolio</h5></a>
+        <a href="/" class="button-nav"><h5>About Me</h5></a>
+        <a href="/" class="button-nav"><h5>Project Updates</h5></a>
+        <a href="/" class="button-nav"><h5>Gallery</h5></a>
+        <a href="/" class="button-nav"><h5>Contact</h5></a>
+      </div>
+    </nav>
+  </header>
+  <section class="section-articles"> <!-- Section wrapper -->
+    <div class="container"> <!-- Provides gutters (padding messes with masonry, can't be combined) -->
+      <div class="masonry"> <!-- Actual masonry wrapper -->
+        <article class="masonry-spacer"><!--Spacer for MasonryJS to work--></article>
+        <article class="masonry-item masonry-item-article">
+          <div class="card">
+            <div class="card-bg">
+              <div class="wrapper-pad flex-center">
+                <div class="wrapper">
+                  <h2>08</h2>
+                  <h3>OCT</h3>
+                  <h6>2018</h6>
+                </div>
+              </div>
+            </div>
+            <div class="card-post">
+              <div class="wrapper-pad">
+                <div class="textbox">
+                  <h4><a href="articles/Post%20Title">Post Title</a></h4>
+                  <p>The content of the post goes here. Lorum Ipsum. Etc etc. The content of the post goes here. Lorum Ipsum. Etc etc. The content of the post goes here. Lorum Ipsum. Etc etc. The content of the post goes here. Lorum Ipsum. Etc etc.</p>
+                  <p>The content of the post goes here. Lorum Ipsum. Etc etc. The content of the post goes here. Lorum Ipsum. Etc etc. The content of the post goes here. Lorum Ipsum. Etc etc. The content of the post goes here. Lorum Ipsum. Etc etc.</p>
+                  <p>The content of the post goes here. Lorum Ipsum. Etc etc. The content of the post goes here. Lorum Ipsum. Etc etc. The content of the post goes here. Lorum Ipsum. Etc etc. The content of the post goes here. Lorum Ipsum. Etc etc.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="masonry-item masonry-item-profile">
+          <div class="card pop">
+            <div class="card-bg" style="background-image: url('../public/images/profile-large.jpg')"></div>
+            <div class="card-bio">
+              <div class="wrapper-pad">
+                <h4>Mikolaj Figurski</h4>
+                <p>Mikolaj is just some random guy who's building this website, and his bio is yet to be written. If you have any ideas, feel free to contact!</p>
+                <p>Of course, he's probably got a lot to say about himself, so while designing, I'm planning on giving him as much room as he wants.</p>
+                <p>Fortunately, these tiles are expandable, and automatically adjust to content. How convenient. Although there's some problems with javascript supposedly.</p>
+              </div>
+            </div>
+            <div class="card-social">
+              <div class="wrapper-pad">
+                <a href="#" class="icon"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="icon"><i class="fab fa-github"></i></a>
+                <a href="#" class="icon"><i class="fab fa-stack-overflow"></i></a>
+                <a href="#" class="icon"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="masonry-item masonry-item-text">
+          <div class="card">
+            <div class="wrapper-pad">
+              <div class="textbox">
+                <h4>Hello World!</h4>
+                <p>Short text about god knows what, might also probably link to a post</p>
+                <p>Short text about god knows what, might also probably link to a post</p>
+                <p>Short text about god knows what, might also probably link to a post</p>
+                <p>Short text about god knows what, might also probably link to a post</p>
+                <p>Short text about god knows what, might also probably link to a post</p>
+                <p>Short text about god knows what, might also probably link to a post</p>
+                <p>Short text about god knows what, might also probably link to a post</p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="masonry-item masonry-item-text">
+          <div class="card">
+            <div class="wrapper-pad">
+              <div class="textbox">
+                <h4>Another TextBox</h4>
+                <p>Death by CSS... nothing makes sense anymore</p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="masonry-item masonry-item-media masonry-item-medium">
+          <div class="card">
+            <img src="../public/images/profile-large.jpg" alt="demo">
+          </div>
+        </article>
+        <article class="masonry-item masonry-item-contact">
+          <div class="card pop">
+            <div class="wrapper-pad">
+              <h4>Like what you see? Send me a <span class="primary">message</span>!!</h4>
+            </div>
+            <div class="wrapper-pad">
+              <form method="post" action="messages">
+                <input type="text" placeholder="Prefered Name">
+                <input type="text" placeholder="Email">
+                <textarea placeholder="Message!"></textarea>
+                <button class="button">Submit</button>
+              </form>
+            </div>
+            <div class="wrapper-pad">
+              <h5>Or, <span class="primary">email</span> me at <a href="#">meek.f80@gmail.com</a></h5>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <footer class="section-footer">
+    <div class="container">
+      <h5>Looks like you've reached the end</h5>
+      <p>This website handmade by me. Thanks for visiting!</p>
+      <p>&copy; 2018 - Mikolaj Figurski</p>
+    </div>
+  </footer>
+</body>
+<!-- ImagesLoaded (for helping Masonry.JS figure out when to go) -->
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<!-- Masonry.JS (for layout, loads last to see elems) -->
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="../public/js/masonry.js"></script>
+</html>

@@ -1,0 +1,209 @@
+/* ALL STYLES PERTAINING TO MASONRY/CARDS
+NOTE: elems must have 'masonry-item' class as standalone class for javascript to catch them*/
+
+
+
+/* Determines grid-columns, not displayed */
+.masonry-spacer {
+  width: 16.666%;
+  height: 20px;
+}
+/* General masonry-item style */
+[class*="masonry-item"] {
+  /* min-height: 100px; */
+  width: 33.333%;
+  padding: 10px; /* THIS IS IMPORTANT... CONTROLS SPACING BETWEEN CARDS */
+  overflow: hidden;
+}
+
+
+
+/* Card initial-styles */
+.card {
+  background-color: var(--color-dark);
+  --item-color: var(--color-primary);
+  box-shadow: 1px 1px 3px 1px rgba(0,0,0,.2);
+  width: 100%;
+  height: 100%;
+  min-height: 20px;
+  transition: filter .3s;
+  overflow: hidden;
+}
+  .card:hover {
+    filter: brightness(1.1);
+  }
+  /* Common Structures within .cards */
+  .card .textbox {
+    padding: 0px 20px 0 5px;
+    overflow-y: auto;
+    height: 100%;
+  }
+  .card .card-bg {
+    background: var(--item-color);
+    color: var(--color-dark);
+    background-size: cover, cover;
+    background-position: center 30%, center;
+    background-repeat: no-repeat;
+    min-height: 100px;
+  }
+  .card a {
+    color: var(--item-color);
+  }
+  .card form {
+    font-family: monospace;
+  }
+    .card input, .card textarea {
+      display: block;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      background: var(--color-light);
+      font-family: inherit;
+      color: var(--color-dark);
+      border: 1px solid var(--color-secondary-dark);
+      margin-top: 2px;
+      margin-bottom: 3px;
+    }
+    .card textarea {
+      resize: vertical;
+      height: 130px;
+    }
+  .card.pop {
+    --item-color: var(--color-dark);
+    background: var(--color-secondary);
+    color: var(--color-dark);
+  }
+
+
+
+
+
+
+
+
+/* ********
+masonry-item variations
+******* */
+
+/* Normal Article */
+.masonry-item-article {
+  width: 66.666%;
+  --height: 350px;
+  height: 350px;
+}
+  .masonry-item-article .card {
+    display: flex;
+  }
+    .masonry-item-article .card .card-bg {
+      flex: 4;
+      max-width: var(--height); /*should be square on larger screens*/
+      font-family: monospace;
+    }
+      .masonry-item-article .card .card-bg h2,
+      .masonry-item-article .card .card-bg h3,
+      .masonry-item-article .card .card-bg h6 {
+        text-align: center;
+      }
+    .masonry-item-article .card .card-post {
+      flex: 7;
+    }
+
+
+/* Profile */
+.masonry-item-profile {
+  width: 33.333%;
+}
+  .masonry-item-profile .card {
+
+  }
+    .masonry-item-profile .card-bg {
+      height: 200px;
+      box-shadow: inset 0px -2px 5px rgba(0,0,0,.5);
+      filter: grayscale(.4);
+    }
+    .masonry-item-profile .card-bio {
+
+    }
+    .masonry-item-profile .card-social {
+    }
+
+/* Text */
+.masonry-item-text {
+  width: 33.333%
+}
+  .masonry-item-text a {
+    color: var(--color-light);
+  }
+  .masonry-item-text .textbox {
+    max-height: 300px;
+  }
+
+/* Media */
+.masonry-item-media {
+  width: 50%;
+  max-height: 700px;
+}
+  .masonry-item-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: all .4s;
+    transform: scale(1.01);
+    filter: grayscale(1);
+  }
+    .masonry-item-media img:hover {
+    transform: scale(1.03);
+    filter: grayscale(.4);
+  }
+
+/* Contact Form */
+.masonry-item-contact {
+
+}
+  .masonry-item-contact .card {
+  }
+
+.masonry-item-small {
+  width: 33.333%;
+}
+.masonry-item-medium {
+  width: 50%;
+}
+.masonry-item-large {
+  width: 66.666%;
+}
+.masonry-item-full {
+  width: 100%;
+}
+
+
+/* ******
+MEDIA QUERIES
+********/
+/* On screens below 1000px */
+@media only screen and (max-width: 1000px){
+  .masonry-spacer {
+    width: 10%;
+  }
+  [class*="masonry-item"] {
+    width: 50%;
+  }
+  /* Variations */
+  .masonry-item-article {
+    width: 100%;
+  }
+}
+
+
+
+
+/* On screens below 600px */
+@media only screen and (max-width: 600px) {
+  .masonry-spacer {
+    width: 100%;
+  }
+  [class*="masonry-item"] {
+    width: 100%;
+  }
+  /* Variations */
+}

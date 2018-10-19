@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    link(rel="shortcut icon", href="images/watermarkyellow.png")
+    link(href="css/style.css", rel="stylesheet", type="text/css")
+    title Blog | Figurski
+  body
+    include modules/nav.pug
+    section.section-articles
+      div.container
+        div.masonry
+          article.masonry-spacer
+
+          each art in articles
+            if (art.type == undefined || art.type == "text")
+              include modules/article-text.pug
+            if (art.type == "post")
+            if (art.type == "profile")
+              include modules/article-profile.pug
+            if (art.type == "media")
+              include modules/article-media.pug
+            if (art.type == "contact")
+              include modules/article-contact.pug
+    include modules/footer.pug
+    script(src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js")
+    script(src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js")
+    script(src="js/masonry.js")
+    script(src="js/articleLoader.js")
