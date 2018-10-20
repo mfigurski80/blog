@@ -1,3 +1,4 @@
 article.masonry-item.masonry-item-media.masonry-item-large
   div.card
-    img(src="images/" + art.image, alt="media-image")
+    a(href="articles/" + art.title)
+      img(src="images/" + art.image, alt=art.title)

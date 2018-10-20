@@ -22,6 +22,7 @@ var articleLoader = setInterval(function() {
               elem = makeTextCard(elem, item);
               break;
             case "contact":
+              elem = makeContactCard(elem, item);
               break;
             case "media":
               break;
@@ -52,13 +53,41 @@ var articleLoader = setInterval(function() {
 
 
 function makeContactCard(elem, item) {
-  elem.classList.add("masonry-item");
+  elem.classList.add("masonry-item","masonry-item-contact");
+
+  let card = makeElem({classList:["card", "pop"], childOf:elem});
+
+  let wrapper_pad1 = makeElem({classList:["wrapper-pad"], childOf:card});
+  let h4 = makeElem({type: "h4", text:"Like what you see? Send me a ", childOf:wrapper_pad1});
+  let primary1 = makeElem({type:"span", classList:["primary"], text:"message", childOf:h4});
+  let exclamation = document.createTextNode("!!");
+  h4.appendChild(exclamation);
+
+  let wrapper_pad2 = makeElem({classList:["wrapper-pad"], childOf:card});
+  let form = makeElem({type:"form", attributes:{"method":"post","action":"messages"}, childOf:wrapper_pad2});
+  let input_name = makeElem({type: "input", attributes:{"type":"text","placeholder":"Preferred Name","name":"name"}, childOf:form});
+  let input_email = makeElem({type:"input", attributes:{"type":"text","placeholder":"Email","name":"email"}, childOf:form});
+  let textarea = makeElem({type:"textarea", attributes:{"placeholder":"Message!","name":"message"}, childOf:form});
+  let button = makeElem({type:"button", classList:["button"], text:"Submit", childOf:form});
+
+  let wrapper_pad3 = makeElem({classList:["wrapper-pad"], childOf:card});
+  let h5 = makeElem({type:"h5", text: "Or, ", childOf:wrapper_pad3});
+  let primary2 = makeElem({type:"span",classList:["primary"], text:"email ", childOf:h5});
+  let meAt = document.createTextNode("me at ");
+  h5.appendChild(meAt);
+  let a = makeElem({type:"a", attributes:{"href":"mailto:meek.f80@gmail.com"}, text:"meek.f80@gmail.com", childOf:h5});
 
   return elem;
 }
 
 function makeMediaCard(elem, item) {
-  elem.classList.add("masonry-item","masonry-item-");
+  elem.classList.add("masonry-item","masonry-item-media","masonry-item-large");
+
+  let card = createElem({classList:["card"], childOf:elem});
+
+  let a = createElem({type:"a", attributes:{"href":"articles/" + item.title}, childOf:card});
+
+  let img = createElem({type:"img", attributes:{"src": "images/" + item.image, "alt":item.title, childOf:a}});
 
   return elem;
 }
@@ -68,6 +97,8 @@ function makeProfileCard(elem, item) {
 
   return elem;
 }
+
+
 
 function makeTextCard(elem, item) {
 
@@ -95,7 +126,6 @@ function makeTextCard(elem, item) {
   let title = document.createTextNode(item.title);
   h4.appendChild(title);
 
-
   let p1 = document.createElement("p");
   textbox.appendChild(p1);
 
@@ -116,4 +146,38 @@ function makeTextCard(elem, item) {
   a2.appendChild(readMore);
 
   return elem;
+}
+
+
+// {type:"div", classList:[], attributes:{}, text:"", childOf:undefine}
+function makeElem(args = {}) {
+  //create defaults for args
+  if (!args.type) {
+    args.type = "div";
+  }
+  if (!args.classList) {
+    args.classList = [];
+  }
+  if (!args.attributes) {
+    args.attributes = {};
+  }
+
+
+  const elem = document.createElement(args.type); // create the elem
+
+  args.classList.forEach(clss => { // add all classes
+    elem.classList.add(clss);
+  });
+  for (let key in args.attributes) { // add all attributes
+    elem.setAttribute(key, args.attributes[key]);
+  }
+  if (args.text) { // add text nodes
+    let text_elem = document.createTextNode(args.text);
+    elem.appendChild(text_elem);
+  }
+  if (args.childOf) { // add parent
+    args.childOf.appendChild(elem);
+  }
+
+  return elem; // return!
 }

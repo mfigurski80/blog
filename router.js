@@ -198,15 +198,18 @@ router.post("/signup", function(req, res) {
 router.get("/articledata/:countAlreadyAsked", function(req, res) {
   db.getAllArticles((err, rows) => {
     var articles_list = [];
-    rows.forEach(row => { //divide rows into a list of articles
+    const pos = parseInt(req.params.countAlreadyAsked) * 10; //what position are they asking for?
+    rows.reverse().slice(pos, pos+10).forEach(row => { //for each row that we're adding...
       // row has: title, content, day, month, year, type
       row.title = row.title.uncleanText();
       row.content = row.content.uncleanText().substring(0,700);
       articles_list.push(row);
     });
-    const pos = parseInt(req.params.countAlreadyAsked) * 10;
-    rows = rows.reverse().slice(pos, pos+10);
-    res.json(rows)
+
+    //add a contact card
+    articles_list.push({type:"contact", title: "Contact"});
+
+    res.json(articles_list);
   });
 });
 
