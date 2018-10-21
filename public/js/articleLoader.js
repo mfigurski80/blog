@@ -4,6 +4,12 @@
 
 var countAskedForArticles = 0;
 
+
+const new_elems = document.getElementsByClassName("new-elems");
+while (new_elems[0]) {
+  new_elems[0].classList.remove("new-elems");
+}
+
 var articleLoader = setInterval(function() {
   if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 500) {
     var new_elems = [];
@@ -11,12 +17,17 @@ var articleLoader = setInterval(function() {
 
     const req = new XMLHttpRequest();
     req.onload = () => { // when request loads...
-      var res = JSON.parse(req.responseText);
+      var res = req.responseText;
 
-      console.log(req.responseText);
-
-      if (res.length == 0) { // if less than full (9) amount of articles returned
+      if (res.length == 0) { // if no articles returned
         clearInterval(articleLoader); // stop looking
+      } else {
+        masonry_elem.innerHTML += res;
+        const new_elems = document.getElementsByClassName("new-elems");
+        msnry.appended(new_elems);
+        while (new_elems[0]) {
+          new_elems[0].classList.remove("new-elems");
+        }
       }
     }
 

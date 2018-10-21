@@ -89,7 +89,7 @@ router.get("/", function(req, res) {
 
 
     //reverse the articles!! Give only 10!!
-    articles_list = articles_list.reverse().slice(0,9);
+    articles_list = articles_list.reverse().slice(0,10);
 
     // add a profile article as the second/third article
     const profile = {
@@ -197,8 +197,20 @@ router.post("/signup", function(req, res) {
 // AJAX ARTICLE DATA
 router.get("/articledata/:countAlreadyAsked", function(req, res) {
   const pos = parseInt(req.params.countAlreadyAsked) * 10; //what position are they asking for?
-  db.getAllArticles((err, rows) => {
+  var articles_list = [];
 
+  db.getAllArticles((err, rows) => {
+    rows = rows.reverse().slice(pos, pos+10);
+    rows.forEach(row=>{
+      row.title = row.title.uncleanText();
+      row.content = row.content.uncleanText().substring(0,700);
+      articles_list.push(row);
+    });
+    console.log(articles_list);
+    res.render("modules/articles", {
+      articles: articles_list
+    });
+    // res.send("yo");
   });
 });
 
