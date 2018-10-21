@@ -10,18 +10,8 @@ html
       div.container
         div.masonry
           article.masonry-spacer
-
-          each art in articles
-            if (art.type == undefined || art.type == "text")
-              include modules/article-text.pug
-            if (art.type == "post")
-              include modules/article-post.pug
-            if (art.type == "profile")
-              include modules/article-profile.pug
-            if (art.type == "media")
-              include modules/article-media.pug
-            if (art.type == "contact")
-              include modules/article-contact.pug
+            include modules/articles.pug
+            
     include modules/footer.pug
     script(src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js")
     script(src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js")

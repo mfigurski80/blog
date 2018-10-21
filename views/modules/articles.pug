@@ -1,0 +1,11 @@
+each art in articles
+  if (art.type == undefined || art.type == "text")
+    include article-text.pug
+  if (art.type == "post")
+    include article-post.pug
+  if (art.type == "profile")
+    include article-profile.pug
+  if (art.type == "media")
+    include article-media.pug
+  if (art.type == "contact")
+    include article-contact.pug

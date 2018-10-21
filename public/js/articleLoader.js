@@ -7,45 +7,19 @@ var countAskedForArticles = 0;
 var articleLoader = setInterval(function() {
   if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 500) {
     var new_elems = [];
+    countAskedForArticles++;
+
     const req = new XMLHttpRequest();
-
-    req.onload = (err, res)=>{ // when request loads...
+    req.onload = () => { // when request loads...
       var res = JSON.parse(req.responseText);
-      if (res.length > 0) { // if more than 0 articles are returned
-        res.forEach(item => {
-          var elem = document.createElement("article");
-          switch (item.type) {
-            case null:
-              elem = makeTextCard(elem, item);
-              break;
-            case "text":
-              elem = makeTextCard(elem, item);
-              break;
-            case "contact":
-              elem = makeContactCard(item);
-              break;
-            case "media":
-              elem = makeMediaCard(item)
-              break;
-            case "profile":
-              break;
-            case "post":
-              elem = makePostCard(item);
-              break;
-          }
-          masonry_elem.appendChild(elem); //add tile to masonry
-          new_elems.push(elem);
-        });
 
-        msnry.appended(new_elems);
+      console.log(req.responseText);
 
-      }
-      if (res.length < 9) { // if less than full (9) amount of articles returned
+      if (res.length == 0) { // if less than full (9) amount of articles returned
         clearInterval(articleLoader); // stop looking
       }
     }
 
-    countAskedForArticles++;
     req.open("GET", window.location.href + "articleData/" + countAskedForArticles);
     console.log(window.location.href + "articleData/" + countAskedForArticles)
     req.send();
@@ -85,13 +59,9 @@ function makeContactCard(item) {
 
 function makeMediaCard(item) {
   let elem = makeElem({type:"article", classList:["masonry-item","masonry-item-media"]});
-
   let card = createElem({classList:["card"], childOf:elem});
-
   let a = createElem({type:"a", attributes:{"href":"articles/" + item.title}, childOf:card});
-
   let img = createElem({type:"img", attributes:{"src": "images/" + item.image, "alt":item.title, childOf:a}});
-
   return elem;
 }
 
