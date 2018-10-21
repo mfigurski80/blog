@@ -202,7 +202,7 @@ router.get("/articledata/:countAlreadyAsked", function(req, res) {
     rows.reverse().slice(pos, pos+10).forEach(row => { //for each row that we're adding...
       // row has: title, content, day, month, year, type
       row.title = row.title.uncleanText();
-      row.content = row.content.uncleanText().substring(0,700);
+      row.content = row.content.uncleanText().substring(0,800);
       articles_list.push(row);
     });
 

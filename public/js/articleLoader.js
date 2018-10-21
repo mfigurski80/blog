@@ -22,11 +22,15 @@ var articleLoader = setInterval(function() {
               elem = makeTextCard(elem, item);
               break;
             case "contact":
-              elem = makeContactCard(elem, item);
+              elem = makeContactCard(item);
               break;
             case "media":
+              elem = makeMediaCard(item)
               break;
             case "profile":
+              break;
+            case "post":
+              elem = makePostCard(item);
               break;
           }
           masonry_elem.appendChild(elem); //add tile to masonry
@@ -52,9 +56,8 @@ var articleLoader = setInterval(function() {
 
 
 
-function makeContactCard(elem, item) {
-  elem.classList.add("masonry-item","masonry-item-contact");
-
+function makeContactCard(item) {
+  let elem = makeElem({type:"article", classList:["masonry-item","masonry-item-contact"]});
   let card = makeElem({classList:["card", "pop"], childOf:elem});
 
   let wrapper_pad1 = makeElem({classList:["wrapper-pad"], childOf:card});
@@ -80,8 +83,8 @@ function makeContactCard(elem, item) {
   return elem;
 }
 
-function makeMediaCard(elem, item) {
-  elem.classList.add("masonry-item","masonry-item-media","masonry-item-large");
+function makeMediaCard(item) {
+  let elem = makeElem({type:"article", classList:["masonry-item","masonry-item-media"]});
 
   let card = createElem({classList:["card"], childOf:elem});
 
@@ -97,8 +100,6 @@ function makeProfileCard(elem, item) {
 
   return elem;
 }
-
-
 
 function makeTextCard(elem, item) {
 
@@ -148,6 +149,27 @@ function makeTextCard(elem, item) {
   return elem;
 }
 
+function makePostCard(item) {
+  let article = makeElem({type:"article", classList:["masonry-item","masonry-item-post"]});
+  let card = makeElem({classList:["card"], childOf:article});
+
+  let card_bg = makeElem({classList:["card-bg"], attributes:{"style":"background-image: url('./images/" + item.image + "')"}, childOf:card});
+  let wrapper_pad1 = makeElem({classList:["wrapper-pad","flex-center"], childOf:card_bg});
+  let wrapper1 = makeElem({classList:["wrapper"], childOf:wrapper_pad1});
+  let h2 = makeElem({type:"h2", text:item.day, childOf:wrapper1});
+  let h3 = makeElem({type:"h3", text:item.month, childOf:wrapper1});
+  let h4 = makeElem({type:"h6", text:item.year, childOf:wrapper1});
+
+  let card_post = makeElem({classList:["card-post"], childOf:card});
+  let wrapper_pad2 = makeElem({classLIst:["wrapper-pad"], childOf:card_post});
+  let textbox = makeElem({classList:["textbox"], childOf:wrapper_pad2});
+  let h4 = makeElem({type:"h4", childOf:textbox});
+  let a = makeElem({type:"a", attributes:{"href":"articles/" + item.title}, text:art.title, childOf:h4});
+  let p = makeElem({type:"p", text:item.content, childOf:textbox});
+
+
+  return article;
+}
 
 // {type:"div", classList:[], attributes:{}, text:"", childOf:undefine}
 function makeElem(args = {}) {

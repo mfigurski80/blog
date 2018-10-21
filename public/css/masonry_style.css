@@ -60,7 +60,6 @@ NOTE: elems must have 'masonry-item' class as standalone class for javascript to
       background: var(--color-light);
       font-family: inherit;
       color: var(--color-dark);
-      border: 1px solid var(--color-secondary-dark);
       margin-top: 2px;
       margin-bottom: 3px;
     }
@@ -86,25 +85,25 @@ masonry-item variations
 ******* */
 
 /* Normal Article */
-.masonry-item-article {
+.masonry-item-post {
   width: 66.666%;
   --height: 350px;
   height: 350px;
 }
-  .masonry-item-article .card {
+  .masonry-item-post .card {
     display: flex;
   }
-    .masonry-item-article .card .card-bg {
+    .masonry-item-post .card .card-bg {
       flex: 4;
       max-width: var(--height); /*should be square on larger screens*/
       font-family: monospace;
     }
-      .masonry-item-article .card .card-bg h2,
-      .masonry-item-article .card .card-bg h3,
-      .masonry-item-article .card .card-bg h6 {
+      .masonry-item-post .card .card-bg h2,
+      .masonry-item-post .card .card-bg h3,
+      .masonry-item-post .card .card-bg h6 {
         text-align: center;
       }
-    .masonry-item-article .card .card-post {
+    .masonry-item-post .card .card-post {
       flex: 7;
     }
 
@@ -136,6 +135,7 @@ masonry-item variations
   }
   .masonry-item-text .textbox {
     max-height: 300px;
+    overflow-x: hidden;
   }
 
 /* Media */
@@ -152,7 +152,6 @@ masonry-item variations
     filter: grayscale(1);
   }
     .masonry-item-media img:hover {
-    transform: scale(1.03);
     filter: grayscale(.4);
   }
 
@@ -189,7 +188,7 @@ MEDIA QUERIES
     width: 50%;
   }
   /* Variations */
-  .masonry-item-article {
+  .masonry-item-post {
     width: 100%;
   }
 }
@@ -198,7 +197,7 @@ MEDIA QUERIES
 
 
 /* On screens below 600px */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .masonry-spacer {
     width: 100%;
   }

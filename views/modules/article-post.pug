@@ -1,0 +1,14 @@
+div.masonry-item.masonry-item-post
+  div.card
+    div.card-bg(style="background-image: url('./images/" + art.image + "');")
+      div.wrapper-pad.flex-center
+        div.wrapper
+          h2=art.day
+          h3=art.month
+          h6=art.year
+    div.card-post
+      div.wrapper-pad
+        div.textbox
+          h4
+            a(href="articles/" + art.title)=art.title
+          p=art.content
