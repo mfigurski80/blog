@@ -5,7 +5,6 @@ const Session = require("./Session.js");
 
 const db = new Database('./db/main.db');
 var curSessions = {};
-// const upload = multer({ dest: 'public/images' })
 
 
 
@@ -98,7 +97,7 @@ router.get("/", function(req, res) {
       type: "profile",
       image: "images/profile-large.jpg"
     }
-    articles_list.splice(Math.floor(Math.random()*2)+1,0,profile);
+    articles_list.splice(1,0,profile);
 
     // add a contact article as last article
     articles_list.push({title: "Contact", type: "contact"})

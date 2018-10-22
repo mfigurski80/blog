@@ -8,8 +8,8 @@ html
     h1  Log in to view!
     form(method="post", onsubmit="hashInput('password', 'username')")
       p Username
-      input(name="username", id="username")
+      input(type="text", name="username", id="username")
       p Password
-      input(name="password", id="password")
+      input(type="password", name="password", id="password")
       button Submit
   script(src="js/formCalls.js")
