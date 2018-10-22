@@ -206,7 +206,15 @@ router.get("/articledata/:countAlreadyAsked", function(req, res) {
       row.content = row.content.uncleanText().substring(0,700);
       articles_list.push(row);
     });
-    console.log(articles_list);
+
+    // if there even are articles to return
+    if (articles_list.length > 0) {
+      // add contact article at very end.
+      articles_list.push({
+        type: "contact"
+      });
+    }
+
     res.render("modules/articles", {
       articles: articles_list
     });
