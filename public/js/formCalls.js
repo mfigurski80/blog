@@ -13,9 +13,7 @@ function watchInput(form_id, input_id) {
   }
 }
 
-/* Sends DELETE request to current url
-*  TODO: Sends multiple requests? Why? Stop?
-*/
+/* Sends DELETE request to current url */
 function DELETE() {
   const req = new XMLHttpRequest();
   req.onload = () => {

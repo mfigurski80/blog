@@ -11,4 +11,4 @@ const msnry = new Masonry(masonry_elem, {
 // masonry_elem.classList.remove("invisible");
 setTimeout(function() {
   msnry.layout()
-}, 300);
+}, 300); //re-layout when everything loads

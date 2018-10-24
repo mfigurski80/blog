@@ -99,7 +99,7 @@ i.fas, i.fab {
   line-height: 40px;
 }
 
-/* Changes appearance only */
+/* Change color/opacity */
 .invisible {
   opacity: 0;
 }
@@ -139,6 +139,26 @@ i.fas, i.fab {
   .button-nav h5 {
     font-size: 20px;
     line-height: 20px;
+  }
+/* Inputs */
+form {
+  font-family: inherit;
+}
+  input, textarea {
+    /* font-family: monospace; */
+    display: block;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    background: var(--color-light);
+    font-family: inherit;
+    color: var(--color-dark);
+    margin-top: 2px;
+    margin-bottom: 3px;
+  }
+  textarea {
+    resize: vertical;
+    height: 130px;
   }
 
 
