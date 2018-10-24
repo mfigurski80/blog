@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
-@import url("masonry_style.css");
+/* @import url("masonry_style.css"); */
+@import url("new_masonry_style.css");
 @import url("https://use.fontawesome.com/releases/v5.3.1/css/all.css");
 
 * {
@@ -10,10 +11,8 @@
 :root {
   --color-primary: #FDD835;
   --color-primary-dark: #F9A825;
-  --color-primary-filter: #FDD83588;
   --color-secondary: #f44336;
   --color-secondary-dark: #d32f2f;
-  --color-secondary-filter: #f4433688;
 
   --color-light: #EEE;
   --color-dark: #333;
@@ -29,8 +28,8 @@ a {
   text-decoration: none;
 }
 ::selection {
-  color: black;
-  background: white;
+  background: var(--color-primary);
+  color: var(--color-dark);
 }
 body {
   font-family: "Poppins", sans-serif;
@@ -50,15 +49,15 @@ h2 {
   font-size: 130px;
   line-height: 100px;
 }
-h4 {
-  font-size: 30px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
 h3 {
   font-size: 40px;
   line-height: 35px;
   letter-spacing: 5px;
+}
+h4 {
+  font-size: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 h5 {
   font-size: 25px;

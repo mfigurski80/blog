@@ -230,7 +230,7 @@ router.post("/messages", function(req, res) {
 // Catch all remaining requests (with 404)
 router.get("*", function(req, res) {
   res.status("404");
-  res.send("404");
+  res.send("404 - The page you're looking for doesn't exist.");
 });
 
 module.exports = router;
