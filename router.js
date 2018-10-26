@@ -224,6 +224,7 @@ router.get("/articledata/:countAlreadyAsked", function(req, res) {
 // MESSAGES
 router.post("/messages", function(req, res) {
   res.send("Thanks for your message!!");
+  console.log(req.body.name + " just left a message!");
   db.addMessage(req.body.name, req.body.email, req.body.message);
 })
 
