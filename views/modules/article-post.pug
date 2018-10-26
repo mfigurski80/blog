@@ -1,8 +1,9 @@
+- var isImage = (art.image != 'undefined')
 div.masonry-item.masonry-item-post
   div.card
-    div.card-bg(style="background-image: url('./images/" + art.image + "');")
-      div.wrapper-pad.flex-center
-        div.wrapper
+    div.card-bg(style= isImage ? "background-image: url('./images/" + art.image + "');" : "")
+      div.wrapper-pad.flex-center.text-center
+        div(class="wrapper " + (isImage ? "primary" : ""))
           h2=art.day
           h3=art.month
           h6=art.year

@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
-/* @import url("masonry_style.css"); */
-@import url("new_masonry_style.css");
+@import url("masonry_style.css");
 @import url("https://use.fontawesome.com/releases/v5.3.1/css/all.css");
 
 * {
@@ -38,6 +37,9 @@ body {
   color: var(--color-light);
   overflow-x: hidden;
 }
+img {
+  display: block;
+}
 
 
 
@@ -60,7 +62,7 @@ h4 {
   padding-bottom: 5px;
 }
 h5 {
-  font-size: 25px;
+  font-size: 22px;
 }
 h6 {
   font-size: 20px;
@@ -68,7 +70,7 @@ h6 {
   letter-spacing: 9px;
 }
 p {
-  font-size: 15px;
+  font-size: 14px;
 }
 
 /* Scrollbar */
@@ -176,7 +178,7 @@ form {
   margin-right: auto;
 }
 .wrapper-pad {
-  padding: 20px 20px;
+  padding: 15px;
   height: 100%;
   overflow: hidden;
 }
@@ -194,7 +196,9 @@ form {
 .text-center {
   text-align: center;
 }
-
+.wrapper {
+  display: inline-block;
+}
 
 
 
