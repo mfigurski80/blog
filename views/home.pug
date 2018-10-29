@@ -5,7 +5,10 @@ html
     link(href="css/style.css", rel="stylesheet", type="text/css")
     title Blog | Figurski
   body
-    include modules/nav.pug
+    section.section-profile
+      div.container-small
+        h3=profile.name
+        h5=profile.bio
     section.section-articles
       div.container
         div.masonry

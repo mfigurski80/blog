@@ -89,21 +89,18 @@ router.get("/", function(req, res) {
 
     //reverse the articles!! Give only 10!!
     articles_list = articles_list.reverse().slice(0,10);
-
-    // add a profile article as the second/third article
-    const profile = {
-      title: "Mikolaj Figurski",
-      content: "Short demo bio Hey",
-      type: "profile",
-      image: "images/profile-large.jpg"
-    }
-    articles_list.splice(1,0,profile);
-
     // add a contact article as last article
-    articles_list.push({title: "Contact", type: "contact"})
+    articles_list.push({title: "Contact", type: "contact"});
 
-    res.render('home', { //render the home page
-      articles: articles_list
+    //get profile information
+    db.getUser("mfigurski80", action = function(err, rows) {
+      var profile = rows[0];
+
+      res.render('home', { //render the home page
+        articles: articles_list,
+        profile: profile
+      });
+
     });
   });
 });
