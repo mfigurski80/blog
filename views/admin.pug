@@ -6,7 +6,18 @@ html
     title ADMIN
   body
     div.section.container
-      h3 Add an Article!!
+      h3 Edit your profile
+      form(action="/admin", method="POST", ref="editUserForm", encType="multipart/form-data")
+        p Name:
+        input(name="name", type="text", value=user.name)
+        p Bio:
+        input(name="bio", type="text", value=user.bio)
+        p Image:
+        img(src="../" + user.image, alt="Current Image")
+        input(name="userImage", type="file", accept="image/jpg, image/jpeg, image/png")
+        button Submit
+    div.section.container
+      h3 Add an Article
       form(id="add_form", action="/articles/", method="POST", ref='uploadForm', encType="multipart/form-data")
         p Title
         input(name="title", id="title_input")

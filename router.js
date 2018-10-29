@@ -166,14 +166,22 @@ router.post("/login", function(req, res) {
 // ADMIN
 router.get("/admin", function(req, res) {
   if (isReqAuthorized(req)) {
-    res.render('admin');
+    db.getUser(curSessions[req.cookies.SessionID].user.username, action=function(err, rows) {
+      res.render('admin', {
+        user: rows[0]
+      });
+    });
   } else {
     res.redirect("/login");
   }
 });
 router.post("/admin", function(req, res) {
-  req.redirect("back");
-  db.addMessage(req.body.name.cleanText(), req.body.email.cleanText(), req.body.message.cleanText());
+  if (isReqAuthorized(req)) {
+    console.log(req.body, req.files);
+    res.send("Thanks. Will handle somehow, not yet");
+  } else {
+    res.redirect("/login");
+  }
 });
 
 // SIGNUP

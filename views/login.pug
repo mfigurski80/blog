@@ -5,11 +5,12 @@ html
     link(href="css/style.css", rel="stylesheet")
     title LOGIN
   body
-    h1  Log in to view!
-    form(method="post", onsubmit="hashInput('password', 'username')")
-      p Username
-      input(type="text", name="username", id="username")
-      p Password
-      input(type="password", name="password", id="password")
-      button Submit
+    div.container
+      h1  Log in to view!
+      form(method="post", onsubmit="hashInput('password', 'username')")
+        p Username
+        input(type="text", name="username", id="username")
+        p Password
+        input(type="password", name="password", id="password")
+        button Submit
   script(src="js/formCalls.js")

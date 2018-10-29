@@ -5,7 +5,7 @@
 var countAskedForArticles = 0;
 
 var articleLoader = setInterval(function() {
-  if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 500) {
+  if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 1000) {
     var new_elems = [];
     countAskedForArticles++;
 

@@ -171,16 +171,12 @@ form {
 * Layouts
 ***** */
 [class*="container"] {
-  max-width: 1400px;
-  padding-left: 15px;
-  padding-right: 15px;
+  max-width: 1300px;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-left: auto;
   margin-right: auto;
 }
-  .container-small {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
 .wrapper-pad {
   padding: 15px;
   height: 100%;
