@@ -8,7 +8,7 @@ html
     div.container
       h1=article.title
       h5=article.day + " " + article.month + " " + article.year
-      p=article.content
+      p !{article.content}
 
     button(onclick="DELETE()") Delete Article
     include modules/footer.pug
