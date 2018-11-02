@@ -28,15 +28,14 @@ module.exports = class Database {
   deleteArticle(title) {
     this.run("DELETE FROM articles WHERE title = '" + title + "'");
   }
+  updateArticle(title, newtitle, content) {
+    this.run("UPDATE articles SET title = '" + newtitle + "', content = '" + content + "' WHERE title = '" + title + "'")
+  }
   addUser(username, password, name, salt, bio="") {
     this.run("INSERT INTO users (username, password, name, salt, bio) VALUES ('" + username + "', '" + password + "', '" + name + "', '" + salt + "', '" + bio + "')");
   }
-  updateUserBio(username, newBio) {
-    console.log("Ha, idk how");
-  }
-  updateUserName(username, newName) {
-    console.log("Ha, idk how");
-  }
+
+
   addMessage(name, email, message) {
     const d = new Date();
     const day = d.getDate();

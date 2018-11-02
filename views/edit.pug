@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    link(rel="shortcut icon", href="../images/watermarkyellow.png")
+    link(href="../css/style.css", rel="stylesheet", type="text/css")
+    title="EDIT | " + article.title
+  body
+    div.section.container
+      h3 Editing Article...
+      form(id="form", onsubmit="event.preventDefault(); putFromForm('form')")
+        p Title
+        input(name="title", type="text", value=article.title)
+        p Content
+        textarea(name="content", type="text")=article.content
+        button Submit
+    include modules/footer.pug
+  script(src="../js/requests.js")

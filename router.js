@@ -82,7 +82,7 @@ router.get("/", function(req, res) {
     rows.forEach(row => { //divide rows into a list of articles
       // row has: title, content, day, month, year, type
       row.title = row.title.uncleanText();
-      row.content = row.content.uncleanText().substring(0,700);
+      row.content = row.content.uncleanText().substring(0,500);
       articles_list.push(row);
     });
 
@@ -107,7 +107,7 @@ router.get("/", function(req, res) {
 
 // ARTICLES
 router.get("/articles/:article", function(req, res, next) {
-  db.getArticle(title = req.params.article.cleanText() ,action = (err, rows) => {
+  db.getArticle(title = req.params.article.cleanText(), action = (err, rows) => {
     if (rows.length != 0) { // if article exists
       rows[0].title = rows[0].title.uncleanText();
       rows[0].content = rows[0].content.uncleanText();
@@ -140,6 +140,11 @@ router.delete("/articles/:article", function(req, res) {
     console.log("Deleted: " + req.params.article);
   }
 });
+router.put("/articles/:article", function(req, res) {
+  db.updateArticle(req.params.article.cleanText(), req.body.title.cleanText(), req.body.content.cleanText());
+  // res.redirect("/articles/" + req.params.article);
+  res.send("yo, thnx");
+});
 
 // LOGIN
 router.get("/login", function(req, res) {
@@ -161,7 +166,7 @@ router.post("/login", function(req, res) {
       res.redirect("/login")
     }
   });
-})
+});
 
 // ADMIN
 router.get("/admin", function(req, res) {
@@ -175,10 +180,17 @@ router.get("/admin", function(req, res) {
     res.redirect("/login");
   }
 });
-router.post("/admin", function(req, res) {
-  if (isReqAuthorized(req)) {
-    console.log(req.body, req.files);
-    res.send("Thanks. Will handle somehow, not yet");
+router.get("/edit/:article", function(req, res) {
+  if (!isReqAuthorized(req)) {
+    db.getArticle(title=req.params.article.cleanText(), action=(err, rows)=>{
+      if (rows.length != 0) {
+        rows[0].title = rows[0].title.uncleanText();
+        rows[0].content = rows[0].content.uncleanText();
+        res.render('edit',{
+          article: rows[0]
+        });
+      }
+    });
   } else {
     res.redirect("/login");
   }
@@ -207,7 +219,7 @@ router.get("/articledata/:countAlreadyAsked", function(req, res) {
     rows = rows.reverse().slice(pos, pos+10);
     rows.forEach(row=>{
       row.title = row.title.uncleanText();
-      row.content = row.content.uncleanText().substring(0,700);
+      row.content = row.content.uncleanText().substring(0,500);
       articles_list.push(row);
     });
 
@@ -233,7 +245,7 @@ router.post("/messages", function(req, res) {
   db.addMessage(req.body.name, req.body.email, req.body.message);
 })
 
-// Catch all remaining requests (with 404)
+// Catch all remaining get requests (with 404)
 router.get("*", function(req, res) {
   res.status("404");
   res.send("404 - The page you're looking for doesn't exist.");

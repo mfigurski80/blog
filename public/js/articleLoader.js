@@ -1,7 +1,3 @@
-// const masonry_elem = document.getElementsByClassName("masonry")[0];
-
-// masonry_elem.innerHTML = "";
-
 var countAskedForArticles = 0;
 
 var articleLoader = setInterval(function() {

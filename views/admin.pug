@@ -7,7 +7,8 @@ html
   body
     div.section.container
       h3 Edit your profile
-      form(action="/admin", method="POST", ref="editUserForm", encType="multipart/form-data")
+      p Can't actually have a put method in a form tho, so AJAX time
+      form(action="/admin", method="PUT", ref="editUserForm", encType="multipart/form-data")
         p Name:
         input(name="name", type="text", value=user.name)
         p Bio:
