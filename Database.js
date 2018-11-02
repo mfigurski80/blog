@@ -5,6 +5,21 @@ const sqlite3 = require('sqlite3').verbose();
 module.exports = class Database {
   constructor(pathTo) {
     this.pathTo = pathTo;
+    this.replaceCharacters = [["'"],["&#39;"]];
+  }
+
+  // Helps prevent sql injections, cleans and uncleans stuff
+  clean(string) {
+    this.replaceCharacters[0].forEach((char, pos) => {
+      string = string.replace(new RegExp(char,'g'), this.replaceCharacters[1][pos]);
+    });
+    return string;
+  }
+  unclean(string) {
+    this.replaceCharacters[1].forEach((chars, pos) => {
+      string = string.replace(new RegExp(chars, 'g'), this.replaceCharacters[0][pos]);
+    });
+    return string;
   }
 
 
@@ -23,19 +38,19 @@ module.exports = class Database {
     const day = d.getDate();
     const month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getMonth()];
     const year = d.getFullYear();
-    this.run("INSERT INTO articles (title, content, day, month, year, type, image) VALUES ('" + title + "', '" + content + "', " + day + ", '" + month + "', " + year + ", '" + type + "', '" + imageFile + "')");
+    this.run("INSERT INTO articles (title, content, day, month, year, type, image) VALUES ('" + this.clean(title) + "', '" + this.clean(content) + "', " + day + ", '" + month + "', " + year + ", '" + this.clean(type) + "', '" + this.clean(imageFile) + "')");
   }
   deleteArticle(title) {
-    this.run("DELETE FROM articles WHERE title = '" + title + "'");
+    this.run("DELETE FROM articles WHERE title = '" + this.clean(title) + "'");
   }
   updateArticle(title, newtitle, content) {
-    this.run("UPDATE articles SET title = '" + newtitle + "', content = '" + content + "' WHERE title = '" + title + "'")
+    this.run("UPDATE articles SET title = '" + this.clean(newtitle) + "', content = '" + this.clean(content) + "' WHERE title = '" + this.clean(title) + "'");
   }
   addUser(username, password, name, salt, bio="") {
-    this.run("INSERT INTO users (username, password, name, salt, bio) VALUES ('" + username + "', '" + password + "', '" + name + "', '" + salt + "', '" + bio + "')");
+    this.run("INSERT INTO users (username, password, name, salt, bio) VALUES ('" + this.clean(username) + "', '" + this.clean(password) + "', '" + this.clean(name) + "', '" + salt + "', '" + this.clean(bio) + "')");
   }
   updateUser(username, name, bio) {
-    this.run("UPDATE users SET name='" + name + "', bio = '" + bio + "' WHERE username = '" + username + "'")
+    this.run("UPDATE users SET name='" + this.clean(name) + "', bio = '" + this.clean(bio) + "' WHERE username = '" + this.clean(username) + "'");
   }
 
 
@@ -44,27 +59,47 @@ module.exports = class Database {
     const day = d.getDate();
     const month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getMonth()];
     const year = d.getFullYear();
-    this.run("INSERT INTO messages (name, email, message, day, month, year) VALUES ('" + name + "', '" + email + "', '" + message + "', " + day + ", '" + month + "', " + year + ")");
+    this.run("INSERT INTO messages (name, email, message, day, month, year) VALUES ('" + this.clean(name) + "', '" + this.clean(email) + "', '" + this.clean(message) + "', " + day + ", '" + month + "', " + year + ")");
   }
   addSessionData(key, requestCount, requestsHist, requestsTimestamp) {
-    this.run("INSERT INTO sessionData (key, requestCount, requestsHist, requestsTimestamp) VALUES ('" + key + "', " + requestCount + ", '" + requestsHist + "', '" + requestsTimestamp + "')");
+    this.run("INSERT INTO sessionData (key, requestCount, requestsHist, requestsTimestamp) VALUES ('" + key + "', " + requestCount + ", '" + this.clean(requestsHist) + "', '" + requestsTimestamp + "')");
   }
 
 
   // gets given item from given table, with callback function... used for reading data
   get(table, selection, condition, action) {
     const db = new sqlite3.Database(this.pathTo);
-    db.all("SELECT " + selection + " FROM " + table + " WHERE " + condition, [], action);
+    db.all("SELECT " + selection + " FROM " + this.clean(table) + " WHERE " + condition, [], (err, rows) => {
+      if (err) {
+        console.log(err);
+      } else if (rows.length > 0) {
+        //unclean the information
+        rows.forEach(row => { // for each sample returned
+          Object.values(row).forEach(val => { // for all sample info
+            if (typeof val === 'string') { // if its a string
+              val = this.unclean(val); // unclean it
+            }
+          })
+        });
+
+        // and actually do the action with unclean rows
+        action(rows);
+      }
+    });
     db.close();
   }
   getAllArticles(action) {
     this.get("articles", "*", "title = title", action);
   }
   getArticle(title, action) {
-    this.get("articles", "*", "title = '" + title + "'", action);
+    this.get("articles", "*", "title = '" + this.clean(title) + "'", (articles) => {
+      action(articles[0]);
+    });
   }
   getUser(username, action) {
-    this.get("users", "*", "username = '" + username + "'", action);
+    this.get("users", "*", "username = '" + this.clean(username) + "'", (users) => {
+      action(users[0]);
+    });
   }
   getMessages(action) {
     this.get("messages", "*", "year = year", action);
