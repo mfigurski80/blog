@@ -141,9 +141,12 @@ router.delete("/articles/:article", function(req, res) {
   }
 });
 router.put("/articles/:article", function(req, res) {
-  db.updateArticle(req.params.article.cleanText(), req.body.title.cleanText(), req.body.content.cleanText());
-  // res.redirect("/articles/" + req.params.article);
-  res.send("yo, thnx");
+  if (isReqAuthorized(req)) {
+    db.updateArticle(req.params.article.cleanText(), req.body.title.cleanText(), req.body.content.cleanText());
+    res.send("completed");
+  } else {
+    res.send("not logged in");
+  }
 });
 
 // LOGIN
@@ -181,7 +184,7 @@ router.get("/admin", function(req, res) {
   }
 });
 router.get("/edit/:article", function(req, res) {
-  if (!isReqAuthorized(req)) {
+  if (isReqAuthorized(req)) {
     db.getArticle(title=req.params.article.cleanText(), action=(err, rows)=>{
       if (rows.length != 0) {
         rows[0].title = rows[0].title.uncleanText();

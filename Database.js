@@ -34,6 +34,9 @@ module.exports = class Database {
   addUser(username, password, name, salt, bio="") {
     this.run("INSERT INTO users (username, password, name, salt, bio) VALUES ('" + username + "', '" + password + "', '" + name + "', '" + salt + "', '" + bio + "')");
   }
+  updateUser(username, name, bio) {
+    this.run("UPDATE users SET name='" + name + "', bio = '" + bio + "' WHERE username = '" + username + "'")
+  }
 
 
   addMessage(name, email, message) {
