@@ -6,22 +6,10 @@ html
     title ADMIN
   body
     div.section.container
-      h3 Edit your profile
-      p Can't actually have a put method in a form tho, so AJAX time
-      form(action="/admin", method="PUT", ref="editUserForm", encType="multipart/form-data")
-        p Name:
-        input(name="name", type="text", value=user.name)
-        p Bio:
-        input(name="bio", type="text", value=user.bio)
-        p Image:
-        img(src="../" + user.image, alt="Current Image")
-        input(name="userImage", type="file", accept="image/jpg, image/jpeg, image/png")
-        button Submit
-    div.section.container
       h3 Add an Article
       form(id="add_form", action="/articles/", method="POST", ref='uploadForm', encType="multipart/form-data")
         p Title
-        input(name="title", id="title_input")
+        input(name="title", id="title_input", required)
         p Content
         textarea(name="content")
         p Type
@@ -29,10 +17,9 @@ html
           option(value="text") text
           option(value="post") post
           option(value="media") media
-          option(value="contact") contact
         p Image?
         input(name="imageFile", type="file", accept="image/jpg, image/jpeg, image/png")
-        button Submit
+        button.button Submit
     include modules/footer.pug
     script(src="js/formCalls.js")
     script watchInput('add_form', 'title_input');

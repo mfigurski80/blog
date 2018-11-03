@@ -11,13 +11,17 @@ module.exports = class Database {
   // Helps prevent sql injections, cleans and uncleans stuff
   clean(string) {
     this.replaceCharacters[0].forEach((char, pos) => {
-      string = string.replace(new RegExp(char,'g'), this.replaceCharacters[1][pos]);
+      if (string) {
+        string = string.replace(new RegExp(char,'g'), this.replaceCharacters[1][pos]);
+      }
     });
     return string;
   }
   unclean(string) {
     this.replaceCharacters[1].forEach((chars, pos) => {
-      string = string.replace(new RegExp(chars, 'g'), this.replaceCharacters[0][pos]);
+      if (string) {
+        string = string.replace(new RegExp(chars, 'g'), this.replaceCharacters[0][pos]);
+      }
     });
     return string;
   }
@@ -62,7 +66,7 @@ module.exports = class Database {
     this.run("INSERT INTO messages (name, email, message, day, month, year) VALUES ('" + this.clean(name) + "', '" + this.clean(email) + "', '" + this.clean(message) + "', " + day + ", '" + month + "', " + year + ")");
   }
   addSessionData(key, requestCount, requestsHist, requestsTimestamp) {
-    this.run("INSERT INTO sessionData (key, requestCount, requestsHist, requestsTimestamp) VALUES ('" + key + "', " + requestCount + ", '" + this.clean(requestsHist) + "', '" + requestsTimestamp + "')");
+    this.run("INSERT INTO sessionData (key, requestCount, requestsHist, requestsTimestamp) VALUES ('" + key + "', " + requestCount + ", '" + requestsHist + "', '" + requestsTimestamp + "')");
   }
 
 

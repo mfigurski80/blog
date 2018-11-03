@@ -47,6 +47,10 @@ img {
 * Modules
 ****** */
 /* Text */
+h1 {
+  font-size: 150px;
+  line-height: 200px;
+}
 h2 {
   font-size: 130px;
   line-height: 100px;
@@ -71,15 +75,20 @@ h6 {
 }
 p {
   font-size: 14px;
+  line-height: 25px;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
   margin-left: 5px;
 }
 ::-webkit-scrollbar-track {
-    width: 5px;
+    width: 6px;
+    background: repeating-linear-gradient(90deg, transparent,
+      transparent 5px,
+      var(--color-primary) 5px,
+      var(--color-primary) 6px);
 }
 ::-webkit-scrollbar-thumb {
     background: var(--color-primary);
@@ -99,9 +108,11 @@ a.icon {
 i.fas, i.fab {
   font-size: 25px;
   line-height: 40px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
-/* Change color/opacity */
+/* Alters, doesn't establish */
 .invisible {
   opacity: 0;
 }
@@ -115,6 +126,17 @@ i.fas, i.fab {
   font-size: 110%;
   line-height: 90%;
 }
+.primary-bg {
+  display: inline-block;
+  color: var(--color-dark);
+  background: var(--color-primary);
+  padding-left: 6px;
+  padding-right: 6px;
+}
+.small {
+  font-size: 70%;
+  /* font-weight: bold; */
+}
 
 /* Buttons */
 [class*="button"] {
@@ -127,21 +149,10 @@ i.fas, i.fab {
   font-size: 15px;
   text-decoration: none;
   transition: all .2s;
-} [class*="button"]:hover {
+} [class*="button"]:hover, [class*="button"]:focus {
   background: var(--color-dark);
   color: var(--color-light);
 }
-.button-nav {
-  padding: 40px 20px;
-  background: transparent;
-  color: var(--color-light);
-} .button-nav:hover {
-  background: var(--color-dark);
-}
-  .button-nav h5 {
-    font-size: 20px;
-    line-height: 20px;
-  }
 /* Inputs */
 form {
   font-family: inherit;
@@ -157,11 +168,16 @@ form {
     color: var(--color-dark);
     margin-top: 2px;
     margin-bottom: 3px;
+    transition: all .2s;
   }
   textarea {
     resize: vertical;
     height: 130px;
   }
+    input:focus, textarea:focus {
+      background: var(--color-dark);
+      color: var(--color-light);
+    }
 
 
 
@@ -171,17 +187,20 @@ form {
 * Layouts
 ***** */
 [class*="container"] {
-  max-width: 1300px;
+  max-width: 1200px;
   padding-left: 20px;
   padding-right: 20px;
   margin-left: auto;
   margin-right: auto;
 }
-.wrapper-pad {
+[class*="wrapper-pad"] {
   padding: 15px;
   height: 100%;
   overflow: hidden;
 }
+  .wrapper-pad-side {
+    padding: 0px 15px;
+  }
 .flex-center {
   display: flex;
 }
@@ -197,7 +216,31 @@ form {
   text-align: center;
 }
 .wrapper {
-  display: inline-block;
+  /* display: inline-block; */
+}
+.img-wrapper { /*centers image within itself*/
+  overflow: hidden;
+  height: 400px;
+  width: 100%;
+  float: left;
+} .img-wrapper > img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+[class*="layout"] {
+  display: grid;
+}
+.layout-cols {
+  grid-template-columns: 400px 1fr;
+  grid-gap: 30px;
+}
+hr {
+  border: none;
+  /* opacity: 0; */
+  height: 20px;
+  /* background: red; */
 }
 
 
@@ -206,61 +249,25 @@ form {
 * Sections
 ******* */
 [class*="section"] {
+  width: 100%;
   padding-top: 30px;
   padding-bottom: 30px;
   background-color: var(--color-darker);
 }
-.section-header {
-  width: 100%;
-  padding: 0;
+
+.section-profile {
   background: var(--color-darker);
   overflow: hidden;
-  margin-bottom: -30px;
-  padding-top: 10px;
+  /* height: 500px; */
 }
-@media only screen and (min-width: 1600px){
-  .section-header {
-    /* background: red; */
-    position: fixed;
-    height: 100%;
-    width: 100px;
-    left: 10px;
-    top: 0;
-    margin-bottom: 0;
-  }
-    .section-header nav.container {
-      padding: 0;
-      height: 100%;
-    }
-      .section-header nav.container .wrapper {
-        height: 100%;
-        max-height: 600px;
-        display: flex;
-        flex-direction: column;
-      }
-        .section-header .button-nav {
-          flex: 1;
-          width: 100%;
-          padding: 20px 5px;
-          display: flex;
-        }
-          .section-header .button-nav h5 {
-            margin: auto;
-            text-align: center;
-          }
-}
-
-
 .section-articles {
-  /* padding-top: 0; */
-  /* Utilizes masonry -- all defined in masonry_style.css */
+  /* Utilizes masonry -- card styles defined in masonry_style.css */
 }
-  .masonry {
-    transition: opacity .2s;
+  .section-articles .container { /*each tile has 12px -- need this to equalize to actual 20px*/
+    padding-left: 8px;
+    padding-right: 8px;
   }
-
 .section-footer {
   background: var(--color-darker);
   text-align: center;
-  margin-top: 100px;
 }
