@@ -38,7 +38,7 @@
 }
 
 /* masonry media queries */
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1200px) { /*switch to 3 cols*/
   .masonry-item {
     width: calc(100% / 3);
   }
@@ -49,7 +49,7 @@
     width: calc(100%);
   }
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 900px) { /*switch to 2 cols*/
   .masonry-item {
     width: calc(100% / 2);
   }
@@ -57,7 +57,7 @@
     width: calc(100%);
   }
 }
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 650px) { /*switch to 1 col*/
   .masonry-item {
     width: calc(100%);
   }

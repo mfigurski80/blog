@@ -2,23 +2,25 @@ div.container
   div.layout-cols
     div.img-wrapper
       img(src="images/profile-large.jpg", height="140%")
-    div.wrapper
-      h5.primary-bg Hello
-      hr
+    div.wrapper.flex-distribute-horizontally
+      div.wrapper
+        h5.primary-bg Hello
       h4="I'm "
         span.primary Mikolaj Figurski
-      h5.small Full-Stack Web Developer and Data Science Enthusiast
-
-
-      hr
+      h5.text-normal Currently studying at Emory University, I'm a developer and data-science enthusiast. When apart from my laptop, I can be found playing the piano or reading books.
+      h5.text-normal I regularly get error messages from the following technologies:
       div.wrapper
-        p Technologies I use regularly:
-        i.fab.fa-java(title="Java")
-        i.fab.fa-python(title="Python")
         i.fab.fa-js(title="JavaScript")
         i.fab.fa-node-js(title="NodeJS")
         i.fab.fa-react(title="ReactJS")
+        i.fab.fa-python(title="Python")
+        i.fab.fa-java(title="Java")
         i.fab.fa-git(title="GIT")
         i.fab.fa-html5(title="HTML 5")
         i.fab.fa-css3(title="CSS3")
         i.fab.fa-sass(title="SASS")
+      div.wrapper
+        a(href="cv")
+          h5.button-primary="Download CV"
+        a(href="login")
+          h5.button-primary="Admin Login"

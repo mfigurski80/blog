@@ -11,7 +11,7 @@ module.exports = class Database {
   // Helps prevent sql injections, cleans and uncleans stuff
   clean(string) {
     this.replaceCharacters[0].forEach((char, pos) => {
-      if (string) {
+      if (string && string.includes(char)) {
         string = string.replace(new RegExp(char,'g'), this.replaceCharacters[1][pos]);
       }
     });
@@ -19,7 +19,7 @@ module.exports = class Database {
   }
   unclean(string) {
     this.replaceCharacters[1].forEach((chars, pos) => {
-      if (string) {
+      if (string && string.includes(chars)) {
         string = string.replace(new RegExp(chars, 'g'), this.replaceCharacters[0][pos]);
       }
     });
@@ -83,7 +83,7 @@ module.exports = class Database {
             if (typeof val === 'string') { // if its a string
               val = this.unclean(val); // unclean it
             }
-          })
+          });
         });
 
         // and actually do the action with unclean rows

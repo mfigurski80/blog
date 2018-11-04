@@ -72,6 +72,8 @@ router.get("/", function(req, res) {
   db.getAllArticles(action = (rows) => { //get articles... when gotten...
     var articles_list = [];
 
+    rows = rows.reverse().slice(0,10);
+
     // get the all the initial articles
     rows.forEach(row => { //divide rows into a list of articles
       // row has: title, content, day, month, year, type
@@ -79,7 +81,7 @@ router.get("/", function(req, res) {
       articles_list.push(row);
     });
 
-    articles_list = articles_list.reverse().slice(0,10); //reverse the articles!! Give only 10!!
+    // articles_list = articles_list.reverse().slice(0,10); //reverse the articles!! Give only 10!!
     articles_list.push({title: "Contact", type: "contact"}); // add a contact article as last article
 
     //get profile information

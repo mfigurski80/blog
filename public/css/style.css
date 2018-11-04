@@ -36,6 +36,7 @@ body {
   background: var(--color-darker);
   color: var(--color-light);
   overflow-x: hidden;
+  position: absolute;
 }
 img {
   display: block;
@@ -62,16 +63,17 @@ h3 {
 }
 h4 {
   font-size: 30px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  /* padding-top: 5px;
+  padding-bottom: 5px; */
 }
 h5 {
   font-size: 22px;
+  display: inline-block;
 }
 h6 {
-  font-size: 20px;
-  line-height: 20px;
-  letter-spacing: 9px;
+  font-size: 21px;
+  line-height: 22px;
+  letter-spacing: 10px;
 }
 p {
   font-size: 14px;
@@ -108,8 +110,8 @@ a.icon {
 i.fas, i.fab {
   font-size: 25px;
   line-height: 40px;
-  padding-left: 6px;
-  padding-right: 6px;
+  margin-left: 6px;
+  margin-right: 6px;
 }
 
 /* Alters, doesn't establish */
@@ -127,7 +129,6 @@ i.fas, i.fab {
   line-height: 90%;
 }
 .primary-bg {
-  display: inline-block;
   color: var(--color-dark);
   background: var(--color-primary);
   padding-left: 6px;
@@ -135,24 +136,35 @@ i.fas, i.fab {
 }
 .small {
   font-size: 70%;
-  /* font-weight: bold; */
+}
+.text-normal {
+  font-weight: normal;
 }
 
 /* Buttons */
 [class*="button"] {
-  padding: 10px 15px;
-  border: none;
+  padding: 8px 10px;
+  border: 2px solid transparent;
   display: inline-block;
   background: var(--color-light);
   color: var(--color-dark);
   font-family: inherit;
-  font-size: 15px;
   text-decoration: none;
   transition: all .2s;
+  cursor: pointer;
 } [class*="button"]:hover, [class*="button"]:focus {
   background: var(--color-dark);
   color: var(--color-light);
 }
+.button-primary {
+  background: var(--color-primary);
+  border-color: transparent;
+  padding: 0px 8px;
+  margin-right: 6px;
+} .button-primary:hover, .button-primary:focus {
+  color: var(--color-primary);
+}
+
 /* Inputs */
 form {
   font-family: inherit;
@@ -207,10 +219,13 @@ form {
   .flex-center > * {
     margin: auto;
   }
-.flex-distribute {
+[class*="flex-distribute"] {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: stretch;
+}
+.flex-distribute-horizontally {
+  flex-direction: column;
 }
 .text-center {
   text-align: center;
@@ -229,6 +244,10 @@ form {
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
   }
+hr {
+  border: none;
+  height: 20px;
+}
 [class*="layout"] {
   display: grid;
 }
@@ -236,12 +255,12 @@ form {
   grid-template-columns: 400px 1fr;
   grid-gap: 30px;
 }
-hr {
-  border: none;
-  /* opacity: 0; */
-  height: 20px;
-  /* background: red; */
+@media only screen and (max-width: 900px) {
+  .layout-cols {
+    grid-template-columns: calc(100vw - 40px - 6px); /*-6 for scrollbar*/
+  }
 }
+
 
 
 
@@ -260,6 +279,14 @@ hr {
   overflow: hidden;
   /* height: 500px; */
 }
+  .section-profile .flex-distribute-horizontally {
+    min-height: 400px;
+    /* background: red; */
+  }
+  .section-profile i.fab, .section-profile i.fas {
+    margin-left: 0;
+    margin-right: 20px;
+  }
 .section-articles {
   /* Utilizes masonry -- card styles defined in masonry_style.css */
 }
