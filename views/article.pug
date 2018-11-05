@@ -5,11 +5,14 @@ html
     link(href="../css/style.css", rel="stylesheet", type="text/css")
     title="Blog | " + article.title
   body
-    div.container
-      h1=article.title
-      h5=article.day + " " + article.month + " " + article.year
-      p !{article.content}
+    div.section-article.layout-cols
+      div.section-article-bg
+        div.img-wrapper
+          img(src="../images/" + article.image)
+      div.wrapper-pad
+        h1=article.title
+        h5=article.day + " " + article.month + " " + article.year
+        p !{article.content}
+        button(onclick="DELETE()") Delete Article
 
-    button(onclick="DELETE()") Delete Article
-    include modules/footer.pug
   script(src="../js/formCalls.js")

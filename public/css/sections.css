@@ -1,0 +1,39 @@
+/* *******
+* Sections
+******* */
+[class*="section"] {
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: var(--color-darker);
+}
+
+
+
+.section-profile {
+  background: var(--color-darker);
+  overflow: hidden;
+  /* height: 500px; */
+}
+  .section-profile i.fab, .section-profile i.fas {
+    margin-left: 0;
+    margin-right: 20px;
+  }
+.section-articles {
+  /* Utilizes masonry -- card styles defined in masonry_style.css */
+}
+  .section-articles .container { /*each tile has 12px -- need this to equalize to actual 20px*/
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+.section-article { /*indivdual article*/
+  padding: 0;
+}
+  .section-article .section-article-bg {
+    padding: 0;
+    height: 100vh;
+  }
+.section-footer {
+  background: var(--color-darker);
+  text-align: center;
+}
