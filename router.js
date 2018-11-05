@@ -31,12 +31,12 @@ router.use("*", function(req, res, next) {
   */
   function timeoutSession(ses, timeout = 1000*60*5) {
     setTimeout(() => {
-      console.log("\t\t" + ses.user.name + " timeout?", Date.now() >= ses.last_request + timeout);
-      if (Date.now() >= ses.last_request + timeout) {
+      // console.log("\t\t" + ses.user.name + " timeout?", Date.now() >= ses.last_request + timeout);
+      if (Date.now() >= ses.last_request + timeout) { // if timed out...
         console.log("\tRemoving: " + ses.user.name);
         db.addSessionData(ses.id, ses.requestCount, ses.requestsHist, ses.requestsTimestamp); // save session data
         delete curSessions[ses.id];
-      } else {
+      } else { // if not timed out... set new timeout for estimated timeout time (+1sec)
         timeoutSession(ses, timeout - (Date.now() - ses.last_request) + 1000);
       }
     }, timeout);
