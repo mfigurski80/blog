@@ -1,3 +1,4 @@
+- var isImage = (article.image && article.image != 'undefined')
 doctype html
 html
   head
@@ -6,13 +7,18 @@ html
     title="Blog | " + article.title
   body
     div.section-article
-      div.section-article-bg
+      div.section-article-bg(class= isImage ? "" : "hidden")
         div.img-wrapper
-          img(src="../images/" + article.image)
-      div.wrapper-pad
-        h1=article.title
-        h5=article.day + " " + article.month + " " + article.year
-        p !{article.content}
-        button(onclick="DELETE()") Delete Article
-
+          img(src= isImage ? "../images/" + article.image : "")
+      div.section-article-content
+        div.container
+          h1.primary-bg=article.title
+          h5=article.day + " " + article.month + " " + article.year
+          p !{article.content}
+          hr
+          a(href="/")
+            h5.button-primary HOME
+          button.button-primary(onclick="DELETE()")
+            h5 Delete Article
+    include modules/footer.pug
   script(src="../js/formCalls.js")

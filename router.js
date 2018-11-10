@@ -117,10 +117,12 @@ router.post("/articles/:article", function(req, res) {
   }
 });
 router.delete("/articles/:article", function(req, res) {
-  res.send('/'); // notice, AJAX should catch and redirect to this string
   if (isReqAuthorized(req)) {
     db.deleteArticle(req.params.article);
     console.log("Deleted: " + req.params.article);
+    res.send('/'); // notice, AJAX should catch and redirect to this string
+  } else {
+    res.send("/login");
   }
 });
 router.put("/articles/:article", function(req, res) {

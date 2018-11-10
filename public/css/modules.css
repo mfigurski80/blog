@@ -4,8 +4,8 @@
 ****** */
 /* Text */
 h1 {
-  font-size: 150px;
-  line-height: 200px;
+  font-size: 90px;
+  line-height: 120px;
 }
 h2 {
   font-size: 130px;
@@ -57,6 +57,9 @@ i.fas, i.fab {
 .invisible {
   opacity: 0;
 }
+.hidden {
+  display: none;
+}
 .primary {
   color: var(--color-primary);
   font-size: 110%;
@@ -68,10 +71,15 @@ i.fas, i.fab {
   line-height: 90%;
 }
 .primary-bg {
-  color: var(--color-dark);
+  color: var(--color-darker);
   background: var(--color-primary);
   padding-left: 6px;
   padding-right: 6px;
+}
+.dark-bg {
+  color: var(--color-light);
+  background: var(--color-dark);
+  padding: 6px;
 }
 .small {
   font-size: 70%;

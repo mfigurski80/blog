@@ -5,16 +5,16 @@
   width: 100%;
   padding-top: 30px;
   padding-bottom: 30px;
-  background-color: var(--color-darker);
 }
 
 
 
 .section-profile {
-  background: var(--color-darker);
   overflow: hidden;
-  /* height: 500px; */
 }
+  .section-profile .layout-cols {
+    grid-auto-rows: 400px;
+  }
   .section-profile i.fab, .section-profile i.fas {
     margin-left: 0;
     margin-right: 20px;
@@ -31,7 +31,12 @@
 }
   .section-article .section-article-bg {
     padding: 0;
-    height: 100vh;
+    height: 40vh;
+    /* min-height: 13vh; */
+  }
+  .section-article .section-article-content {
+    /* position: relative; */
+    /* top: -13vh; */
   }
 .section-footer {
   background: var(--color-darker);
